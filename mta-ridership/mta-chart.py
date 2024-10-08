@@ -14,7 +14,7 @@ angles = [n / float(n_hours) * 2 * pi for n in range(n_hours)]
 angles += angles[:1]
 
 mta_data = pd.read_csv(
-    "MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv",
+    "data/MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv",
     parse_dates=["transit_timestamp"],
 )
 
