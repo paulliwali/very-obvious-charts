@@ -1,8 +1,13 @@
+import os
+import sys
+
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
-sns.set_theme(style="whitegrid")
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from theme import PALETTE, apply_theme, save_chart
+
+apply_theme()
 
 FARE_CLASSES = [
     "Metrocard - Unlimited 30-Day",
@@ -12,10 +17,10 @@ FARE_CLASSES = [
 ]
 
 COLORS = {
-    "Metrocard - Unlimited 30-Day": "#1565C0",
-    "Metrocard - Unlimited 7-Day": "#42A5F5",
-    "Metrocard - Full Fare": "#E65100",
-    "OMNY - Full Fare": "#FF9800",
+    "Metrocard - Unlimited 30-Day": PALETTE["sienna"],
+    "Metrocard - Unlimited 7-Day": PALETTE["goldenrod"],
+    "Metrocard - Full Fare": PALETTE["steel_blue"],
+    "OMNY - Full Fare": PALETTE["olive"],
 }
 
 STYLES = {
@@ -39,7 +44,6 @@ hourly = (
     .reset_index()
 )
 
-# Normalize each fare class to its own peak hour
 hourly["normalized"] = hourly.groupby("fare_class_category")["ridership"].transform(
     lambda s: s / s.max()
 )
@@ -57,18 +61,14 @@ for fare_class in FARE_CLASSES:
         label=fare_class,
     )
 
-ax.set_xlabel("Hour of Day", fontsize=12)
-ax.set_ylabel("Ridership (normalized to peak)", fontsize=12)
+ax.set_xlabel("Hour of Day")
+ax.set_ylabel("Ridership (normalized to peak)")
 ax.set_xticks(range(24))
 ax.set_xticklabels([f"{h}" for h in range(24)])
 ax.set_title(
     "Unlimited Cards Are for Commuters\nNormalized Hourly Ridership by Fare Class",
-    fontsize=14,
     pad=15,
 )
-ax.legend(fontsize=10)
+ax.legend()
 
-fig.tight_layout()
-plt.savefig("reports/unlimited_vs_payperride.png", dpi=150)
-plt.close(fig)
-print("Saved reports/unlimited_vs_payperride.png")
+save_chart(fig, "unlimited_vs_payperride")
