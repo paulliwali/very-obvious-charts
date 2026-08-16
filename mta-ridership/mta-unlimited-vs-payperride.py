@@ -4,7 +4,8 @@ import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
 from theme import PALETTE, apply_theme, save_chart
 
 apply_theme()
@@ -31,7 +32,7 @@ STYLES = {
 }
 
 mta_data = pd.read_csv(
-    "data/MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv",
+    os.path.join(HERE, "data", "MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv"),
     parse_dates=["transit_timestamp"],
 )
 
@@ -71,4 +72,4 @@ ax.set_title(
 )
 ax.legend()
 
-save_chart(fig, "unlimited_vs_payperride")
+save_chart(fig, "unlimited_vs_payperride", subdir=HERE)

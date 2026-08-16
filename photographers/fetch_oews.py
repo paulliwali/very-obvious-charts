@@ -20,7 +20,8 @@ USER_AGENT = "very-obvious-charts/1.0 (paulliwali@hotmail.com)"
 URL = "https://www.bls.gov/oes/special-requests/oesm{yy}nat.zip"
 YEARS = range(2003, 2026)
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+HERE = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(HERE, "data")
 RAW_DIR = os.path.join(DATA_DIR, "oews_raw")
 OUT_CSV = os.path.join(DATA_DIR, "oews_photography.csv")
 

@@ -4,13 +4,14 @@ import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
 from theme import PALETTE, apply_theme, save_chart
 
 apply_theme()
 
 mta_data = pd.read_csv(
-    "data/MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv",
+    os.path.join(HERE, "data", "MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv"),
     parse_dates=["transit_timestamp"],
 )
 
@@ -57,4 +58,4 @@ ax2.legend(loc="center right")
 
 plt.title("OMNY Is Eating Metrocard: Monthly Ridership by Payment System", pad=15)
 
-save_chart(fig, "omny_adoption")
+save_chart(fig, "omny_adoption", subdir=HERE)

@@ -5,7 +5,8 @@ from math import pi
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
 
 from theme import PALETTE, apply_theme, save_chart
 
@@ -21,7 +22,7 @@ angles = [n / float(n_hours) * 2 * pi for n in range(n_hours)]
 angles += angles[:1]
 
 mta_data = pd.read_csv(
-    "data/MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv",
+    os.path.join(HERE, "data", "MTA_Subway_Hourly_Ridership__Beginning_February_2022_20240930.csv"),
     parse_dates=["transit_timestamp"],
 )
 
@@ -128,4 +129,4 @@ for borough in BOROUGHS:
     fig.text(0.5, 0.02, "Youngest  ----------->  Oldest",
              ha="center", fontsize=14, color=PALETTE["text"], alpha=0.6)
     fig.subplots_adjust(top=0.88, bottom=0.08, wspace=0.4)
-    save_chart(fig, f"{borough}_ridership_comparison")
+    save_chart(fig, f"{borough}_ridership_comparison", subdir=HERE)

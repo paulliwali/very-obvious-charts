@@ -11,10 +11,11 @@ import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
 from theme import PALETTE, apply_theme, save_chart
 
-CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "oews_photography.csv")
+CSV = os.path.join(HERE, "data", "oews_photography.csv")
 BASE_YEAR = 2007  # iPhone launch
 
 # Photo-lab work was split across two SOC codes until the 2010 revision merged them.
@@ -122,4 +123,4 @@ if __name__ == "__main__":
         ),
     )
 
-    save_chart(fig, "photographers-vs-photo-labs", subdir=os.path.dirname(os.path.abspath(__file__)))
+    save_chart(fig, "photographers-vs-photo-labs", subdir=HERE)

@@ -7,7 +7,8 @@ import seaborn as sns
 from gender_guesser.detector import Detector
 from nba_api.stats.static import players
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
 from theme import PALETTE, apply_theme, save_chart
 
 GENDER_ORDER = ["male", "mostly_male", "andy", "unknown", "mostly_female", "female"]
@@ -110,4 +111,4 @@ if __name__ == "__main__":
         ),
     )
 
-    save_chart(fig, "nba-player-gender-guess", subdir=".")
+    save_chart(fig, "nba-player-gender-guess", subdir=HERE)
