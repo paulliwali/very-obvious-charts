@@ -10,5 +10,8 @@ Polar/radar charts comparing Metrocard vs OMNY subway ridership across 24 hours,
 ### `nba-player-names/`
 Histogram of guessed genders for NBA players based on their first names, using `gender_guesser` on Kaggle player stats data.
 
+### `prop13-house-prices/`
+Did California's 1978 property tax cap send house prices to the moon? FHFA house price index, California vs the US, 1975–2026. The run-up starts before the vote, not after.
+
 ### `photographers/`
 Did smartphones kill professional photographers? Indexed employment lines from BLS OEWS, 2003–2025. Photographers are down 17% since the iPhone launched; photo-lab workers are down 93%.
